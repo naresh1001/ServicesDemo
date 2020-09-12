@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {FormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { RegisterstudentComponent } from './registerstudent/registerstudent.component';
 import { StudentlistComponent } from './studentlist/studentlist.component';
@@ -17,7 +18,8 @@ import { StudentsService } from './students.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [StudentsService],
   bootstrap: [AppComponent]

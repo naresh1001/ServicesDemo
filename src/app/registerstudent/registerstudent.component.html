@@ -1,1 +1,43 @@
-<p>registerstudent works!</p>
+<div class="mycontainer">
+    <h2 style="text-align: center;">Student Registration</h2>
+    <div>
+        <form #userForm = "ngForm" (ngSubmit)="submitData(userForm)">
+
+           <div class="form-group">
+              <input class= "form-control" type="text" required placeholder="Enter name" #stname="ngModel" 
+              [class.is-invalid]="stname.invalid && stname.touched"
+              name="stname" [(ngModel)]="studentModel.name"/>
+              <small class="text-danger"  [class.d-none]="stname.valid || stname.untouched">Name is required</small>
+            </div>
+           
+           <div class="form-group">
+            <input class= "form-control" type="text" required placeholder="Enter Father name" #ftname="ngModel"
+            [class.is-invalid]="ftname.invalid && ftname.touched"
+            name="ftname" [(ngModel)]="studentModel.fname"/>
+            <small class="text-danger"  [class.d-none]="ftname.valid || ftname.untouched">Father Name is required</small>
+         </div>
+         <div class="form-group">
+            <input class= "form-control" type="number" required pattern="^\d{10}$"  placeholder="Enter Mobile No" #mnumber = "ngModel"
+            [class.is-invalid]="mnumber.invalid && mnumber.touched"
+            name="mnumber"  [(ngModel)]="studentModel.number"/>
+            <!-- <small class="text-danger"  [class.d-none]="mnumber.valid || mnumber.untouched">Mobile No is required and length must be 10 digit</small> -->
+            <div *ngIf= "mnumber.errors && (mnumber.invalid || mnumber.touched)">
+                <small class="text-danger" *ngIf="mnumber.errors.required">Mobile No is required</small> 
+                <small class="text-danger" *ngIf="mnumber.errors.pattern">Mobile No must be 10 digit</small> 
+              </div>
+       
+        </div>
+         <div class="form-group">
+            <input class= "form-control" type="text" required placeholder="Enter Email" name="email" #email="ngModel" [(ngModel)]="studentModel.email"/>
+         </div>
+         <div>
+             <button [disabled]= "!userForm.valid"  type="submit" class="btn btn-info">Register</button>
+         </div>
+        </form>
+        <div>
+
+            <!-- {{ userForm.value |json }}  -->
+
+        </div>
+    </div>
+</div>
